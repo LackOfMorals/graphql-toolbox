@@ -21,7 +21,6 @@ import { useContext, useEffect, useState } from "react";
 
 import { EditorContextProvider, StorageContextProvider } from "@graphiql/react";
 import { NeedleThemeProvider } from "@neo4j-ndl/react";
-import { QuestionMarkCircleIconOutline } from "@neo4j-ndl/react/icons";
 import type { GraphQLSchema } from "graphql";
 
 import { invokeSegmentAnalytics } from "../../analytics/segment-snippet";
