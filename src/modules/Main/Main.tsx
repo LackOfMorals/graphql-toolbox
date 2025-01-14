@@ -24,7 +24,6 @@ import { NeedleThemeProvider } from "@neo4j-ndl/react";
 import type { GraphQLSchema } from "graphql";
 
 import { invokeSegmentAnalytics } from "../../analytics/segment-snippet";
-import { tracking } from "../../analytics/tracking";
 import { CannySDK } from "../../common/canny";
 import { ViewSelector } from "../../components/ViewSelector";
 import { AuthContext } from "../../contexts/auth";
@@ -68,10 +67,28 @@ export const Main = () => {
             });
     }, []);
 
+    const Banner = () => {
+        return (
+            <div className="h-8 w-full bg-lavender-45 text-neutral-10 text-center leading-8">
+                GraphQL for Neo4j AuraDB now in beta! See the{" "}
+                <a
+                    href="https://neo4j.com/docs/graphql/6/aura-graphql/"
+                    className="underline"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Docs
+                </a>
+                .
+            </div>
+        );
+    };
+
     if (!auth.driver) {
         return (
             <div className="flex">
                 <div className="flex w-full h-full flex-col">
+                    <Banner />
                     <Login />
                 </div>
             </div>
@@ -83,6 +100,7 @@ export const Main = () => {
             <EditorContextProvider>
                 <StorageContextProvider>
                     <NeedleThemeProvider theme="dark">
+                        <Banner />
                         <TopBar />
                     </NeedleThemeProvider>
                     <ViewSelector hasSchema={!!schema} />
